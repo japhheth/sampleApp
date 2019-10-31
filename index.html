@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Vue tutorial</title>
+</head>
+<body>
+    <div id="app">
+        <hr>
+
+        <button @click="counter++">Increase</button>
+        <button @click="counter--">Decrease</button>
+        <p>{{ counter }}</p>
+        <p>{{ output }}</p>
+
+        <hr>
+
+        
+
+        <p v-if="show">Can you see me  ?</p>
+        <p v-else>Oh, if you didn't see the first, i must have replaced it :)</p>
+        <p>i'm going nowhere</p>
+        <button @click='show = !show'>Switch em</button>
+
+        <hr>
+
+        
+        <ul>
+            <li v-for="ingredient in ingredients">{{ ingredient }}</li>
+        </ul>
+        <ul>
+            <li v-for="person in persons">
+                <div v-for="(value, key ) in person">{{ key }} : {{ value }}</div>
+            </li>
+        </ul>
+
+        <hr>
+        <div v-for="n in 20">
+            {{ n }}
+        </div>
+        
+
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                counter : 0,
+                show : true,
+                ingredients : ["Onions", "Maggi", "pepper", "Curry", "Tyme"],
+                persons : [
+                    {name: "Blessing", age: 26, "state of Birth": "Ikorodu Lagos"},
+                    {name: "Bayo", age: 40, "state of Birth": "Ikorodu Lagos"}
+                ]
+                
+            },
+            computed: {
+                
+                output : function(){
+                    console.log('Computed')
+                    return this.counter > 5 ? "number is greater than 5" : "number is smaller than 5"
+                   
+                },
+            },
+            watch : {
+                counter : function(value){
+                    var vm = this;
+                    setTimeout(() => {
+                        vm.counter = 0;
+                    }, 2000);
+                }
+                
+            }
+        })
+    
+    
+    
+    
+    
+    </script>
+
+    
+</body>
+</html>
